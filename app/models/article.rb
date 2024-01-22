@@ -9,9 +9,9 @@ class Article < ApplicationRecord
     end
 
     def as_json(options = {})
-    super(options.merge({ except: [:id, :updated_at, :created_at],
+    super(options.merge({ except: [:id, :user_id],
                           methods: [:createdAt, :updatedAt] }))
-    end
+  end
 
     def createdAt
         created_at.iso8601

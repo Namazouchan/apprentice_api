@@ -8,7 +8,16 @@ module Api
           render json: { errors: article.errors }, status: :unprocessable_entity
         end
       end
-  
+
+      def show
+        article = Article.find_by(slug: params[:slug])
+        if article
+          render json: { article: article }, methods: [:tagList, :createdAt, :updatedAt]
+        else
+          render json: { error: 'Article not found' }, status: :not_found
+        end
+      end
+ 
       private
   
       def article_params
