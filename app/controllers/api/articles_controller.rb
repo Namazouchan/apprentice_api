@@ -17,6 +17,15 @@ module Api
           render json: { error: 'Article not found' }, status: :not_found
         end
       end
+
+      def update
+        article = Article.find_by(slug: params[:slug])
+        if article.update(article_params)
+            render json: { article: article }, status: :ok
+        else
+            render json: { errors: article.errors }, status: :unprocessable_entity
+        end
+      end
  
       private
   

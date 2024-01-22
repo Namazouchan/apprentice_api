@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   
   namespace :api do
-    resources :articles, only: [:create, :show], param: :slug
+    resources :articles, only: [:create, :show, :update], param: :slug
   end
   
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
