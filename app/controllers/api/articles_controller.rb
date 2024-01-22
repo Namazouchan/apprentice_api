@@ -26,6 +26,16 @@ module Api
             render json: { errors: article.errors }, status: :unprocessable_entity
         end
       end
+
+      def destroy
+        article = Article.find_by(slug: params[:slug])
+        if article
+          article.destroy
+          head :no_content
+        else
+          render json: { error: 'Article not found' }, status: :not_found
+        end
+      end
  
       private
   
